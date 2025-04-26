@@ -20,7 +20,7 @@ class Pessoa(Base):
     status_ativo = models.BooleanField(default=True) # se a pessoa está ativa na ong
 
     def __str__(self):
-        return f"{self.full_name} ({self.enrollment_id})"
+        return f"{self.nome_completo} ({self.matricula_id})"
 
 
 class Aluno(Pessoa):
@@ -30,7 +30,7 @@ class Aluno(Pessoa):
     #
     
     def __str__(self):
-        return f"Aluno: {self.full_name}"
+        return f"Aluno: {self.nome_completo}"
 
 
 class Voluntario(Pessoa):
@@ -40,4 +40,4 @@ class Voluntario(Pessoa):
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"Voluntario: {self.full_name}"
+        return f"Voluntario: {self.nome_completo}"

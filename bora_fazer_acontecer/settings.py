@@ -61,7 +61,7 @@ ROOT_URLCONF = "bora_fazer_acontecer.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        'DIRS': [BASE_DIR / 'templates'], # Diretório global de templates
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -126,6 +126,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
+
+# Adicionando configuração para arquivos estáticos e mídia
+STATICFILES_DIRS = [BASE_DIR / "static"]
+# Caminho onde os arquivos de mídia coletados serão armazenados
+MEDIA_URL = '/media/'
+# Caminho do diretório de mídia
+MEDIA_ROOT = BASE_DIR / "media"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
