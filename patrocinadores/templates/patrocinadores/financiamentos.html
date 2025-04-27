@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Financiamentos</title>
+    <link rel="stylesheet" href="{% static 'patrocinadores/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Financiamentos</h1>
+
+        <ul class="lista-financiamentos">
+            {% for financiamento in financiamentos %}
+                <li>{{ financiamento.patrocinador.nome }} - {{ financiamento.evento.nome }}: R$ {{ financiamento.valor }}</li>
+            {% empty %}
+                <li>Nenhum financiamento cadastrado.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

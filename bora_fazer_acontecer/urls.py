@@ -22,7 +22,9 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path('pessoas/', include('pessoas.urls'))
+    path('pessoas/', include('pessoas.urls')),
+    path('eventos/', include('eventos.urls')),
+    path('patrocinadores/', include('patrocinadores.urls'))
 ]
 
 # Configuração para servir arquivos de mídia durante o desenvolvimento

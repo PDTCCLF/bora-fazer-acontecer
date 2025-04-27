@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Eventos</title>
+    <link rel="stylesheet" href="{% static 'eventos/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Pessoas</h1>
+
+        <ul class="lista-eventos">
+            {% for evento in eventos %}
+                <li>{{ evento.nome }}</li>
+            {% empty %}
+                <li>Nenhum evento cadastrado.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

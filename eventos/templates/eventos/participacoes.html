@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Participações</title>
+    <link rel="stylesheet" href="{% static 'eventos/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Participações</h1>
+
+        <ul class="lista-participacoes">
+            {% for participacao in participacoes %}
+                <li>{{ participacao.pessoa.nome_completo }} - {{ participacao.evento.nome }}</li>
+            {% empty %}
+                <li>Nenhuma participação cadastrada.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

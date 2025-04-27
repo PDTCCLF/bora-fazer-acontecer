@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Patrocinadores</title>
+    <link rel="stylesheet" href="{% static 'patrocinadores/css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Patrocinadores</h1>
+
+        <ul class="lista-patrocinadores">
+            {% for patrocinador in patrocinadores %}
+                <li>{{ patrocinador.nome }}</li>
+            {% empty %}
+                <li>Nenhum patrocinador cadastrado.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
