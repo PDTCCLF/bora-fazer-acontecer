@@ -29,6 +29,8 @@ class Participacao(Base):
 
     class Meta:
         unique_together = ('aluno', 'evento')  # evita duplicar inscrições
+        verbose_name = "Participação"
+        verbose_name_plural = "Participações"
 
     def __str__(self):
         return f"{self.aluno.nome_completo} inscrito em {self.evento.nome}"

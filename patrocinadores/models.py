@@ -22,6 +22,10 @@ class Patrocinador(Base):
     documento_id = models.CharField(max_length=50, blank=True, null=True)  # CNPJ, registro etc.
     campo_atividade = models.CharField(max_length=20, choices=CAMPO_ATIVIDADE_CHOICES)
 
+    class Meta:
+        verbose_name = "Patrocinador"
+        verbose_name_plural = "Patrocinadores"
+
     def __str__(self):
         return self.nome
 
@@ -37,6 +41,8 @@ class FinanciamentoEvento(Base):
 
     class Meta:
         unique_together = ('patrocinador', 'evento')  # evita duplicar financiamentos
+        verbose_name = "Financiamento de Evento"
+        verbose_name_plural = "Financiamentos de Eventos"
 
     def __str__(self):
         return f"{self.patrocinador.nome} → {self.evento.nome} ({self.valor})"
