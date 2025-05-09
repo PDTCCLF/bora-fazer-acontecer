@@ -39,5 +39,9 @@ class Voluntario(Pessoa):
     """
     usuario = models.OneToOneField(User, on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name = "Voluntário"
+        verbose_name_plural = "Voluntários"
+
     def __str__(self):
         return f"Voluntario: {self.nome_completo}"

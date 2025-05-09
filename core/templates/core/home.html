@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
+</head>
+<body>
+    <h1><a href="{% url 'home' %}">Bora Fazer Acontecer</a></h1>
+    <ul>
+        <li><a href="{% url 'admin:index' %}">Admin</a></li>
+        <li><a href="{% url 'lista_pessoas' %}">Pessoas</a></li>
+        <li><a href="{% url 'lista_alunos' %}">Alunos</a></li>
+        <li><a href="{% url 'lista_voluntarios' %}">Voluntários</a></li>
+        <li><a href="{% url 'lista_eventos' %}">Eventos</a></li>
+        <li><a href="{% url 'lista_participacoes' %}">Participações</a></li>
+        <li><a href="{% url 'lista_patrocinadores' %}">Patrocinadores</a></li>
+        <li><a href="{% url 'lista_financiamentos' %}">Financiamentos</a></li>
+    </ul>
+</body>
+</html>

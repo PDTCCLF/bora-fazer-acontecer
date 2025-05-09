@@ -21,6 +21,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
+    path('', include('core.urls')),  # Página inicial e outras páginas gerais
     path("admin/", admin.site.urls),
     path('pessoas/', include('pessoas.urls')),
     path('eventos/', include('eventos.urls')),

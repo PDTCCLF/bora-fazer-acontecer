@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     
     # Apps de cada domínio dos dados
-    'base',
+    'core', # app para paginas gerais
+    'base', # modelo abstrato base
     'pessoas',
     'eventos',
     'patrocinadores',
