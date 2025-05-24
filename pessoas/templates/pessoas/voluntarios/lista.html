@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Voluntários</title>
+    <link rel="stylesheet" href="{% static 'pessoas/css/style.css' %}">
+</head>
+<body>
+    <h1>Lista de Voluntários</h1>
+
+    <a class="btn" href="{% url 'criar_voluntario' %}">+ Criar novo voluntario</a>
+
+    <ul class="lista-voluntarios">
+        {% for voluntario in voluntarios %}
+            <li>
+                {{ voluntario.nome_completo }} - {{ voluntario.matricula_id }} - {{ voluntario.data_matricula }} - {{ voluntario.data_saida }} - {{ voluntario.status_ativo }}
+                <a class="btn" href="{% url 'editar_voluntario' voluntario.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'deletar_voluntario' voluntario.id %}">Deletar</a>
+            </li>
+        {% empty %}
+            <li>Nenhum voluntário cadastrado.</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{% url 'home' %}">⬅ Voltar para Home</a></p>
+</body>
+</html>
+

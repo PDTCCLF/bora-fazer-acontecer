@@ -2,3 +2,9 @@ __pycache__
 /venv
 wiki.md
 .env
+
+# Arquivos de migracao do Django
+pessoas/migrations
+base/migrations
+eventos/migrations
+patrocinadores/migrations
