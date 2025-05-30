@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Patrocinador, FinanciamentoEvento
+from .forms import PatrocinadorForm, FinanciamentoEventoForm
 
 # View para listar todos os patrocinadores
 def lista_patrocinadores(request):
@@ -10,3 +11,53 @@ def lista_patrocinadores(request):
 def lista_financiamentos(request):
     financiamentos = FinanciamentoEvento.objects.all()
     return render(request, 'patrocinadores/financiamentos.html', {'financiamentos': financiamentos})
+
+# Criar patrocinador
+def criar_patrocinador(request):
+    form = PatrocinadorForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('lista_patrocinadores')
+    return render(request, 'patrocinadores/formulario.html', {'form': form, 'titulo': 'Criar Patrocinador'})
+
+# Criar financiamento de evento
+def criar_financiamento(request):
+    form = FinanciamentoEventoForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('lista_financiamentos')
+    return render(request, 'patrocinadores/formulario_financiamento.html', {'form': form, 'titulo': 'Criar Financiamento de Evento'})
+
+# Editar patrocinador
+def editar_patrocinador(request, pk):
+    patrocinador = get_object_or_404(Patrocinador, pk=pk)
+    form = PatrocinadorForm(request.POST or None, instance=patrocinador)
+    if form.is_valid():
+        form.save()
+        return redirect('lista_patrocinadores')
+    return render(request, 'patrocinadores/formulario.html', {'form': form, 'titulo': 'Editar Patrocinador'})
+
+# Editar financiamento de evento
+def editar_financiamento(request, pk):
+    financiamento = get_object_or_404(FinanciamentoEvento, pk=pk)
+    form = FinanciamentoEventoForm(request.POST or None, instance=financiamento)
+    if form.is_valid():
+        form.save()
+        return redirect('lista_financiamentos')
+    return render(request, 'patrocinadores/formulario_financiamento.html', {'form': form, 'titulo': 'Editar Financiamento de Evento'})
+
+# Deletar patrocinador
+def deletar_patrocinador(request, pk):
+    patrocinador = get_object_or_404(Patrocinador, pk=pk)
+    if request.method == 'POST':
+        patrocinador.delete()
+        return redirect('lista_patrocinadores')
+    return render(request, 'patrocinadores/confirma_deletar.html', {'patrocinador': patrocinador})
+
+# Deletar financiamento de evento
+def deletar_financiamento(request, pk):
+    financiamento = get_object_or_404(FinanciamentoEvento, pk=pk)
+    if request.method == 'POST':
+        financiamento.delete()
+        return redirect('lista_financiamentos')
+    return render(request, 'patrocinadores/confirma_deletar_financiamento.html', {'financiamento': financiamento})

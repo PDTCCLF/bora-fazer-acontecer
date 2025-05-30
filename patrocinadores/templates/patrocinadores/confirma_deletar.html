@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Deletar Patrocinador</title>
+    <link rel="stylesheet" href="{% static 'patrocinadores/css/style.css' %}">
+</head>
+<body>
+    <h1>Deletar Patrocinador</h1>
+    <p>Você tem certeza que deseja deletar <strong>{{ patrocinador.nome }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar</button>
+        <a href="{% url 'lista_patrocinadores' %}">Cancelar</a>
+    </form>
+</body>
+</html>

@@ -7,16 +7,22 @@
     <link rel="stylesheet" href="{% static 'patrocinadores/css/style.css' %}">
 </head>
 <body>
-    <div class="container">
-        <h1>Lista de Patrocinadores</h1>
+    <h1>Lista de Patrocinadores</h1>
+    <a class="btn" href="{% url 'criar_patrocinador' %}">+ Registrar novo patrocinador</a>
 
-        <ul class="lista-patrocinadores">
-            {% for patrocinador in patrocinadores %}
-                <li>{{ patrocinador.nome }}</li>
-            {% empty %}
-                <li>Nenhum patrocinador cadastrado.</li>
-            {% endfor %}
-        </ul>
-    </div>
+    <ul class="lista-patrocinadores">
+        {% for patrocinador in patrocinadores %}
+            <li>
+                {{ patrocinador.nome }} - {{ patrocinador.email }} - {{ patrocinador.telefone_contato }}
+                <a class="btn" href="{% url 'editar_patrocinador' patrocinador.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'deletar_patrocinador' patrocinador.id %}">Deletar</a>
+            </li>
+        {% empty %}
+            <li>Nenhum patrocinador cadastrado.</li>
+        {% endfor %}
+
+    </ul>
+
+    <p><a href="{% url 'home' %}">⬅ Voltar para Home</a></p>
 </body>
 </html>

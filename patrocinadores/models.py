@@ -6,7 +6,7 @@ class Patrocinador(Base):
     """
     Representa uma empresa ou instituição que financia eventos.
     """
-    CAMPO_ATIVIDADE_CHOICES = [
+    campo_atividades = [
         ('EDUCAO', 'Educação e Treinamento'),
         ('ESPORTE', 'Esporte e Recreação'),
         ('ARTES', 'Artes e Cultura'),
@@ -16,11 +16,11 @@ class Patrocinador(Base):
         ('OUTRO', 'Outro'),
     ]
 
+    documento_id = models.CharField(max_length=50, unique=True)  # CNPJ, registro etc.
     nome = models.CharField(max_length=150)
     telefone_contato = models.CharField(max_length=20, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
-    documento_id = models.CharField(max_length=50, blank=True, null=True)  # CNPJ, registro etc.
-    campo_atividade = models.CharField(max_length=20, choices=CAMPO_ATIVIDADE_CHOICES)
+    campo_atividade = models.CharField(max_length=20, choices=campo_atividades)
 
     class Meta:
         verbose_name = "Patrocinador"

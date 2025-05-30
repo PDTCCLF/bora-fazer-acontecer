@@ -7,16 +7,19 @@
     <link rel="stylesheet" href="{% static 'patrocinadores/css/style.css' %}">
 </head>
 <body>
-    <div class="container">
-        <h1>Lista de Financiamentos</h1>
-
-        <ul class="lista-financiamentos">
-            {% for financiamento in financiamentos %}
-                <li>{{ financiamento.patrocinador.nome }} - {{ financiamento.evento.nome }}: R$ {{ financiamento.valor }}</li>
-            {% empty %}
-                <li>Nenhum financiamento cadastrado.</li>
-            {% endfor %}
-        </ul>
-    </div>
+    <h1>Lista de Financiamentos de Eventos</h1>
+    <a class="btn" href="{% url 'criar_financiamento' %}">+ Registrar novo financiamento</a>
+    <ul class="lista-financiamentos">
+        {% for financiamento in financiamentos %}
+            <li>
+                {{ financiamento.patrocinador.nome }} - {{ financiamento.evento.nome }}: R$ {{ financiamento.valor }}
+                <a class="btn" href="{% url 'editar_financiamento' financiamento.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'deletar_financiamento' financiamento.id %}">Deletar</a>
+            </li>
+        {% empty %}
+            <li>Nenhum financiamento cadastrado.</li>
+        {% endfor %}
+    </ul>
+    <p><a href="{% url 'home' %}">⬅ Voltar para Home</a></p>
 </body>
 </html>

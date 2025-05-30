@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Deletar Financiamento</title>
+    <link rel="stylesheet" href="{% static 'patrocinadores/css/style.css' %}">
+</head>
+<body>
+    <h1>Deletar Financiamento</h1>
+    <p>Você tem certeza que deseja deletar o financiamento do evento <strong>{{ financiamento.evento.nome }}</strong> pelo patrocinador <strong>{{ financiamento.patrocinador.nome }}</strong> no valor de <strong>R$ {{ financiamento.valor }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar</button>
+        <a href="{% url 'lista_financiamentos' %}">Cancelar</a>
+    </form>
+</body>
+</html>
