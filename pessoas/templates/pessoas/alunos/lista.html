@@ -14,7 +14,7 @@
     <ul class="lista-alunos">
         {% for aluno in alunos %}
             <li>
-                {{ aluno.nome_completo }} - {{ aluno.matricula_id }} - {{ aluno.data_matricula }} - {{ aluno.data_saida }} - {{ aluno.status_ativo }}
+                {{ aluno.nome_completo }}
                 <a class="btn" href="{% url 'editar_aluno' aluno.id %}">Editar</a>
                 <a class="btn btn-danger" href="{% url 'deletar_aluno' aluno.id %}">Deletar</a>
             </li>

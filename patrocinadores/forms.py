@@ -14,6 +14,13 @@ class PatrocinadorForm(forms.ModelForm):
             'documento_id': forms.TextInput(attrs={'class': 'form-control'}),
             'campo_atividade': forms.Select(attrs={'class': 'form-control'}),
         }
+        labels = {
+            'nome': 'Nome do Patrocinador',
+            'telefone_contato': 'Telefone de Contato',
+            'email': 'E-mail',
+            'documento_id': 'Documento de Identificação (CNPJ ou CPF)',
+            'campo_atividade': 'Campo de Atividade',
+        }
 
 # Formulário para Financiamento de Evento
 class FinanciamentoEventoForm(forms.ModelForm):

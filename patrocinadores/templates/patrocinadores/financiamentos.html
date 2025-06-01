@@ -12,7 +12,7 @@
     <ul class="lista-financiamentos">
         {% for financiamento in financiamentos %}
             <li>
-                {{ financiamento.patrocinador.nome }} - {{ financiamento.evento.nome }}: R$ {{ financiamento.valor }}
+                {{ financiamento.patrocinador.nome }} - {{ financiamento.evento.nome }}
                 <a class="btn" href="{% url 'editar_financiamento' financiamento.id %}">Editar</a>
                 <a class="btn btn-danger" href="{% url 'deletar_financiamento' financiamento.id %}">Deletar</a>
             </li>

@@ -24,12 +24,39 @@ class AlunoForm(forms.ModelForm):
             'data_saida': ISODateInput(attrs={'class': 'form-control'}),
             'endereco': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }
+        exclude = ['matricula_id', 'data_matricula', 'status_ativo']
+        labels = {
+            'nome_completo': 'Nome Completo',
+            'email': 'E-mail',
+            'telefone': 'Telefone',
+            'data_nascimento': 'Data de Nascimento',
+            'data_saida': 'Data de Saída',
+            'endereco': 'Endereço',
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # garantir que o parsing também aceite o formato ISO vindo do <input type="date">
         for f in ('data_nascimento', 'data_saida'):
             self.fields[f].input_formats = ['%Y-%m-%d']
+        # Campos só para visualização
+        if self.instance and self.instance.pk:
+            self.fields['matricula_id'] = forms.CharField(
+                initial=self.instance.matricula_id,
+                disabled=True,
+                label="Matrícula"
+            )
+            self.fields['data_matricula'] = forms.DateField(
+                initial=self.instance.data_matricula,
+                disabled=True,
+                label="Data de Matrícula"
+            )
+            self.fields['status_ativo'] = forms.BooleanField(
+                initial=self.instance.status_ativo,
+                disabled=True,
+                required=False,
+                label="Status Ativo"
+            )
 
 # Formulário para Voluntário
 class VoluntarioForm(forms.ModelForm):
@@ -44,9 +71,36 @@ class VoluntarioForm(forms.ModelForm):
             'data_saida': ISODateInput(attrs={'class': 'form-control'}),
             'endereco': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }
-        
+        exclude = ['matricula_id', 'data_matricula', 'status_ativo']
+        labels = {
+            'nome_completo': 'Nome Completo',
+            'email': 'E-mail',
+            'telefone': 'Telefone',
+            'data_nascimento': 'Data de Nascimento',
+            'data_saida': 'Data de Saída',
+            'endereco': 'Endereço',
+        }
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # garantir que o parsing também aceite o formato ISO vindo do <input type="date">
         for f in ('data_nascimento', 'data_saida'):
             self.fields[f].input_formats = ['%Y-%m-%d']
+        # Campos só para visualização
+        if self.instance and self.instance.pk:
+            self.fields['matricula_id'] = forms.CharField(
+                initial=self.instance.matricula_id,
+                disabled=True,
+                label="Matrícula"
+            )
+            self.fields['data_matricula'] = forms.DateField(
+                initial=self.instance.data_matricula,
+                disabled=True,
+                label="Data de Matrícula"
+            )
+            self.fields['status_ativo'] = forms.BooleanField(
+                initial=self.instance.status_ativo,
+                disabled=True,
+                required=False,
+                label="Status Ativo"
+            )

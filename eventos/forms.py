@@ -24,12 +24,28 @@ class EventoForm(forms.ModelForm):
             'descricao': forms.Textarea(attrs={'rows': 4}),
             'local': forms.TextInput(attrs={'placeholder': 'Endereço do evento'}),
         }
+        exclude = ['codigo_evento']
+        labels = {
+            'nome': 'Nome do Evento',
+            'data': 'Data',
+            'hora_inicio': 'Hora de Início',
+            'duracao': 'Duração',
+            'descricao': 'Descrição',
+            'local': 'Local',
+        }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # garantir que o parsing também aceite o formato ISO vindo do <input type="date">
         for f in ('data',):
             self.fields[f].input_formats = ['%Y-%m-%d']
+        # Campos só para visualização
+        if self.instance and self.instance.pk:
+            self.fields['codigo_evento'] = forms.CharField(
+                initial=self.instance.codigo_evento,
+                disabled=True,
+                label="Código do Evento"
+            )
 
 # Formulário para Participação
 class ParticipacaoForm(forms.ModelForm):
@@ -39,4 +55,8 @@ class ParticipacaoForm(forms.ModelForm):
         widgets = {
             'aluno': forms.Select(),
             'evento': forms.Select(),
+        }
+        labels = {
+            'aluno': 'Aluno(a)',
+            'evento': 'Evento',
         }
