@@ -1,63 +1,63 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9fafb;
     margin: 40px;
+    background: #f9fafb;
     color: #2c3e50;
 }
 
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    background: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-}
-
+/* -------- TÍTULOS -------- */
 h1 {
-    color: #3498db;
-    text-align: center;
+    color: #e67e22; /* laranja para eventos */
     margin-bottom: 20px;
 }
 
+/* -------- LISTA DE EVENTOS -------- */
 .lista-eventos {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 .lista-eventos li {
-    background: #eaf2f8;
-    color: #2c3e50;
-    font-size: 18px;
-    padding: 12px 16px;
+    background: #fbeee6; /* laranja bem claro */
     margin-bottom: 8px;
+    padding: 10px;
     border-radius: 6px;
-    border: 1px solid #d6eaf8;
-    transition: background 0.2s ease;
+    border-left: 5px solid #e67e22;
 }
 
-.lista-eventos li:hover {
-    background: #d6eaf8;
-}
-
+/* -------- LISTA DE PARTICIPAÇÕES -------- */
 .lista-participacoes {
     list-style: none;
     padding: 0;
-    margin: 0;
 }
 
 .lista-participacoes li {
-    background: #eaf2f8;
-    color: #2c3e50;
-    font-size: 18px;
-    padding: 12px 16px;
+    background: #f3e6ff; /* roxo claro */
     margin-bottom: 8px;
+    padding: 10px;
     border-radius: 6px;
-    border: 1px solid #d6eaf8;
-    transition: background 0.2s ease;
+    border-left: 5px solid #8e44ad; /* roxo mais forte */
 }
 
-.lista-participacoes li:hover {
-    background: #d6eaf8;
+/* -------- BOTÕES -------- */
+a.btn {
+    margin-left: 10px;
+    padding: 4px 8px;
+    text-decoration: none;
+    color: white;
+    background: #e67e22; /* padrão eventos */
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+a.btn:hover {
+    background: #ca6f1e;
+}
+
+a.btn-danger {
+    background: #e74c3c;
+}
+
+a.btn-danger:hover {
+    background: #c0392b;
 }

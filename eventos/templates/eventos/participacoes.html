@@ -7,16 +7,20 @@
     <link rel="stylesheet" href="{% static 'eventos/css/style.css' %}">
 </head>
 <body>
-    <div class="container">
-        <h1>Lista de Participações</h1>
+    <h1>Lista de Participações</h1>
+    <a class="btn" href="{% url 'criar_participacao' %}">+ Registrar nova participação</a>
+    <ul class="lista-participacoes">
+        {% for participacao in participacoes %}
+            <li>
+                {{ participacao.aluno.nome_completo }} - {{ participacao.evento.nome }}
+                <a class="btn" href="{% url 'editar_participacao' participacao.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'deletar_participacao' participacao.id %}">Deletar</a>
+            </li>
+        {% empty %}
+            <li>Nenhuma participação cadastrada.</li>
+        {% endfor %}
+    </ul>
 
-        <ul class="lista-participacoes">
-            {% for participacao in participacoes %}
-                <li>{{ participacao.pessoa.nome_completo }} - {{ participacao.evento.nome }}</li>
-            {% empty %}
-                <li>Nenhuma participação cadastrada.</li>
-            {% endfor %}
-        </ul>
-    </div>
+    <p><a href="{% url 'home' %}">⬅ Voltar para Home</a></p>
 </body>
 </html>

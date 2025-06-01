@@ -7,16 +7,20 @@
     <link rel="stylesheet" href="{% static 'eventos/css/style.css' %}">
 </head>
 <body>
-    <div class="container">
-        <h1>Lista de Pessoas</h1>
+    <h1>Lista de Eventos</h1>
+    <a class="btn" href="{% url 'criar_evento' %}">+ Criar novo evento</a>
+    <ul class="lista-eventos">
+        {% for evento in eventos %}
+            <li>
+                {{ evento.nome }} - {{ evento.data }} - {{ evento.local }}
+                <a class="btn" href="{% url 'editar_evento' evento.id %}">Editar</a>
+                <a class="btn btn-danger" href="{% url 'deletar_evento' evento.id %}">Deletar</a>
+            </li>
+        {% empty %}
+            <li>Nenhum evento cadastrado.</li>
+        {% endfor %}
+    </ul>
 
-        <ul class="lista-eventos">
-            {% for evento in eventos %}
-                <li>{{ evento.nome }}</li>
-            {% empty %}
-                <li>Nenhum evento cadastrado.</li>
-            {% endfor %}
-        </ul>
-    </div>
+    <p><a href="{% url 'home' %}">⬅ Voltar para Home</a></p>
 </body>
 </html>

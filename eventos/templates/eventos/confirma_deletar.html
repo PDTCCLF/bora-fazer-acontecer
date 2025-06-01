@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Deletar Evento</title>
+    <link rel="stylesheet" href="{% static 'eventos/css/style.css' %}">
+</head>
+<body>
+    <h1>Deletar Evento</h1>
+    <p>Você tem certeza que deseja deletar <strong>{{ evento.nome }}</strong>?</p>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Confirmar</button>
+        <a href="{% url 'lista_eventos' %}">Cancelar</a>
+    </form>
+</body>
+</html>
