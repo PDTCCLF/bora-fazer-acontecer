@@ -50,7 +50,6 @@ class Aluno(Pessoa):
     """
     Alunos são pessoas matriculadas em classes e eventos.
     """
-    #
     
     def __str__(self):
         return f"Aluno: {self.nome_completo}"

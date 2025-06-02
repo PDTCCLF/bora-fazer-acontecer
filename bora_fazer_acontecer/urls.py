@@ -22,12 +22,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', include('core.urls')),  # Página inicial e outras páginas gerais
-    path("admin/", admin.site.urls),
     path('pessoas/', include('pessoas.urls')),
     path('eventos/', include('eventos.urls')),
     path('patrocinadores/', include('patrocinadores.urls'))
 ]
 
-# Configuração para servir arquivos de mídia durante o desenvolvimento
+# Só em ambiente de desenvolvimento
 if settings.DEBUG:
+    urlpatterns.append(path("admin/", admin.site.urls)) # Painel admin nativo do Django
+    # Configuração para servir arquivos de mídia durante o desenvolvimento
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
