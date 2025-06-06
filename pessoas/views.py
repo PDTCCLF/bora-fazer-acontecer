@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Pessoa, Aluno, Voluntario
 from .forms import AlunoForm, VoluntarioForm
+from django.contrib.auth.models import User
 
 
 # View para listar todos os alunos
@@ -23,10 +24,27 @@ def criar_aluno(request):
 
 # Criar voluntário
 def criar_voluntario(request):
-    form = VoluntarioForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('lista_voluntarios')
+    if request.method == "POST":
+        form = VoluntarioForm(request.POST) # Recebe os dados do formulário
+        if form.is_valid():
+            usuario = form.cleaned_data['usuario']
+            email = form.cleaned_data['email']
+            senha = form.cleaned_data['senha']
+
+            user = User.objects.create_user(
+                username=usuario,
+                email=email,
+                password=senha
+            )
+            user.is_staff = True   # garante acesso ao painel admin
+            user.save()
+
+            voluntario = form.save(commit=False)
+            voluntario.usuario = user
+            voluntario.save()
+            return redirect("lista_voluntarios")
+    else:
+        form = VoluntarioForm()
     return render(request, 'pessoas/voluntarios/formulario.html', {'form': form, 'titulo': 'Criar Voluntário'})
 
 # Editar aluno
