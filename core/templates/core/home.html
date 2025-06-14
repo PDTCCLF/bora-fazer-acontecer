@@ -3,11 +3,22 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Bora Fazer Acontecer</title>
     <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
 </head>
 <body>
     <h1><a href="{% url 'home' %}">Bora Fazer Acontecer</a></h1>
+
+    {% if user.is_authenticated %}
+        <p>Bem-vindo, <strong>{{ user.username }}</strong>!</p>
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn-logout">Logout</button>
+        </form>
+    {% else %}
+        <p><a href="{% url 'login' %}">Login</a></p>
+    {% endif %}
+
     <ul>
         <li><a href="{% url 'lista_alunos' %}">Alunos</a></li>
         <li><a href="{% url 'lista_voluntarios' %}">Voluntários</a></li>

@@ -2,18 +2,21 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Pessoa, Aluno, Voluntario
 from .forms import AlunoForm, VoluntarioForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
-
+@login_required
 # View para listar todos os alunos
 def lista_alunos(request):
     alunos = Aluno.objects.all()
     return render(request, 'pessoas/alunos/lista.html', {'alunos': alunos})
 
+@login_required
 # View para listar todos os voluntários
 def lista_voluntarios(request):
     voluntarios = Voluntario.objects.all()
     return render(request, 'pessoas/voluntarios/lista.html', {'voluntarios': voluntarios})
 
+@login_required
 # Criar aluno
 def criar_aluno(request):
     form = AlunoForm(request.POST or None)
@@ -22,6 +25,7 @@ def criar_aluno(request):
         return redirect('lista_alunos')
     return render(request, 'pessoas/alunos/formulario.html', {'form': form, 'titulo': 'Criar Aluno'})
 
+@login_required
 # Criar voluntário
 def criar_voluntario(request):
     if request.method == "POST":
@@ -47,6 +51,7 @@ def criar_voluntario(request):
         form = VoluntarioForm()
     return render(request, 'pessoas/voluntarios/formulario.html', {'form': form, 'titulo': 'Criar Voluntário'})
 
+@login_required
 # Editar aluno
 def editar_aluno(request, pk):
     aluno = get_object_or_404(Aluno, pk=pk)
@@ -56,6 +61,7 @@ def editar_aluno(request, pk):
         return redirect('lista_alunos')
     return render(request, 'pessoas/alunos/formulario.html', {'form': form, 'titulo': 'Editar Aluno'})
 
+@login_required
 # Editar voluntário
 def editar_voluntario(request, pk):
     voluntario = get_object_or_404(Voluntario, pk=pk)
@@ -65,6 +71,7 @@ def editar_voluntario(request, pk):
         return redirect('lista_voluntarios')
     return render(request, 'pessoas/voluntarios/formulario.html', {'form': form, 'titulo': 'Editar Voluntário'})
 
+@login_required
 # Deletar aluno
 def deletar_aluno(request, pk):
     aluno = get_object_or_404(Aluno, pk=pk)
@@ -73,6 +80,7 @@ def deletar_aluno(request, pk):
         return redirect('lista_alunos')
     return render(request, 'pessoas/alunos/confirma_deletar.html', {'aluno': aluno})
 
+@login_required
 # Deletar voluntário
 def deletar_voluntario(request, pk):
     voluntario = get_object_or_404(Voluntario, pk=pk)
