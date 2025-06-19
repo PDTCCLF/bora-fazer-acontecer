@@ -67,3 +67,11 @@ class Voluntario(Pessoa):
 
     def __str__(self):
         return f"Voluntario: {self.nome_completo}"
+    
+    def delete(self, *args, **kwargs):
+        """
+        Ao deletar o voluntário, também deleta o usuário Django associado.
+        """
+        if self.usuario:
+            self.usuario.delete()
+        super().delete(*args, **kwargs)

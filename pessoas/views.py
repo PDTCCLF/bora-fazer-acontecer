@@ -41,6 +41,7 @@ def criar_voluntario(request):
                 password=senha
             )
             user.is_staff = True   # garante acesso ao painel admin
+            user.is_superuser=True    # dá status de superusuário
             user.save()
 
             voluntario = form.save(commit=False)
