@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Evento, Participacao
-from .forms import EventoForm, ParticipacaoForm
+from eventos.models import Evento, Participacao
+from eventos.forms import EventoForm, ParticipacaoForm
 from django.contrib.auth.decorators import login_required
 
 @login_required
