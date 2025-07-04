@@ -1,8 +1,10 @@
 from django.test import TestCase
 from django.core.exceptions import ValidationError
 from eventos.models import Evento
-from .models import Patrocinador, FinanciamentoEvento
-from .forms import PatrocinadorForm, FinanciamentoEventoForm
+from patrocinadores.models import Patrocinador, FinanciamentoEvento
+from patrocinadores.forms import PatrocinadorForm, FinanciamentoEventoForm
+from datetime import date, time
+
 
 class PatrocinadorFormTests(TestCase):
     """Testes para o formulário de Patrocinador."""
@@ -14,7 +16,7 @@ class PatrocinadorFormTests(TestCase):
             'telefone_contato': '123456789',
             'email': 'contato@empresa.com',
             'documento_id': '12.345.678/0001-90',
-            'campo_atividade': 'Tecnologia',
+            'campo_atividade': 'MEIO_AMBIENTE',
         }
         form = PatrocinadorForm(data=form_data)
         self.assertTrue(form.is_valid())
@@ -47,7 +49,8 @@ class FinanciamentoEventoFormTests(TestCase):
         )
         self.evento = Evento.objects.create(
             nome='Evento Teste',
-            data='2025-09-03',
+            data=date.today(),
+            hora_inicio=time(8, 45),
             local='Auditório'
         )
 

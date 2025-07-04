@@ -6,8 +6,9 @@ class Patrocinador(Base):
     """
     Representa uma empresa ou instituição que financia eventos.
     """
+    # lista de tuplas com valor armazenado no banco e sua descrição
     campo_atividades = [
-        ('EDUCAO', 'Educação e Treinamento'),
+        ('EDUCACAO', 'Educação e Treinamento'),
         ('ESPORTE', 'Esporte e Recreação'),
         ('ARTES', 'Artes e Cultura'),
         ('SAUDE', 'Saúde e Bem-estar'),
@@ -37,7 +38,6 @@ class FinanciamentoEvento(Base):
     patrocinador = models.ForeignKey(Patrocinador, on_delete=models.CASCADE, related_name="financiamentos")
     evento = models.ForeignKey(Evento, on_delete=models.CASCADE, related_name="financiamentos")
     valor = models.DecimalField(max_digits=12, decimal_places=2)
-    data = models.DateField(auto_now_add=True)  # data do registro do financiamento
 
     class Meta:
         unique_together = ('patrocinador', 'evento')  # evita duplicar financiamentos

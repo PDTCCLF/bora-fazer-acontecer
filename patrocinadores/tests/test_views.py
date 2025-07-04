@@ -4,8 +4,11 @@ from django.contrib.auth.models import User
 from patrocinadores.models import Patrocinador, FinanciamentoEvento
 from eventos.models import Evento
 from decimal import Decimal
+from datetime import date, time
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 class PatrocinadoresViewsTests(TestCase):
     """Testes para as views de Patrocinador e FinanciamentoEvento."""
 
@@ -19,11 +22,12 @@ class PatrocinadoresViewsTests(TestCase):
         self.patrocinador = Patrocinador.objects.create(
             documento_id="11.111.111/0001-11",
             nome="Empresa Teste",
-            campo_atividade="EDUCAO"
+            campo_atividade="EDUCACAO"
         )
         self.evento = Evento.objects.create(
             nome="Evento X",
-            data="2025-09-03",
+            data=date.today(),
+            hora_inicio=time(18, 0),
             local="Centro Comunitário"
         )
         self.financiamento = FinanciamentoEvento.objects.create(

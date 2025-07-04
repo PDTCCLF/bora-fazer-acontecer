@@ -3,6 +3,7 @@ from django.db import IntegrityError
 from decimal import Decimal
 from eventos.models import Evento
 from patrocinadores.models import Patrocinador, FinanciamentoEvento
+from datetime import date, time
 
 
 class PatrocinadorModelTests(TestCase):
@@ -14,7 +15,7 @@ class PatrocinadorModelTests(TestCase):
             nome="Empresa X",
             telefone_contato="123456789",
             email="contato@empresa.com",
-            campo_atividade="EDUCAO"
+            campo_atividade="EDUCACAO"
         )
 
     def test_str_method(self):
@@ -41,9 +42,10 @@ class FinanciamentoEventoModelTests(TestCase):
             campo_atividade="ESPORTE"
         )
         self.evento = Evento.objects.create(
-            nome="Evento Teste",
-            data="2025-09-03",
-            local="Auditório"
+            nome="Campeonato de Futebol",
+            data=date.today(),
+            hora_inicio=time(14, 0),
+            local="Quadra da ONG"
         )
 
     def test_str_method(self):
@@ -77,4 +79,4 @@ class FinanciamentoEventoModelTests(TestCase):
             evento=self.evento,
             valor=Decimal("750.00")
         )
-        self.assertIsNotNone(financiamento.data)
+        self.assertIsNotNone(financiamento.criado_em)
