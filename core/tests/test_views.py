@@ -1,18 +1,21 @@
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
+from django.conf import settings
 
-class HomeViewTests(TestCase):
+class CoreViewTests(TestCase):
     """Testes para a view home do app core."""
 
     def setUp(self):
-        # Cria um usuário para testar login_required
+        """ 
+        Cria um usuário para testar requerimento de login.
+        """
         self.user = User.objects.create_user(
-            username="testuser",
-            email="test@example.com",
-            password="password123"
+            username="usuarioteste",
+            email="teste@exemplo.com",
+            password="senha123"
         )
-        self.url = reverse("home")
+        self.url = reverse("home") # Retorna a URL da view home
 
     def test_home_redirect_if_not_logged_in(self):
         """
@@ -26,7 +29,7 @@ class HomeViewTests(TestCase):
         """
         Usuário logado deve acessar a home com sucesso.
         """
-        self.client.login(username="testuser", password="password123")
+        self.client.login(username="usuarioteste", password="senha123")
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, "core/home.html")
@@ -35,7 +38,7 @@ class HomeViewTests(TestCase):
         """
         A view home deve enviar a variável 'debug' no contexto.
         """
-        self.client.login(username="testuser", password="password123")
+        self.client.login(username="usuarioteste", password="senha123")
         response = self.client.get(self.url)
         self.assertIn("debug", response.context)
-        self.assertEqual(response.context["debug"], True)  # ou False se DEBUG=False
+        self.assertEqual(response.context["debug"], settings.DEBUG)

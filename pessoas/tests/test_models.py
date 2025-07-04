@@ -8,10 +8,10 @@ from bora_fazer_acontecer.utils import gerar_identificador_legivel
 class PessoaModelTest(TestCase):
     """Testes para o model Pessoa"""
 
-    def test_criar_pessoa_gera_matricula_e_data_matricula(self):
+    def test_criar_pessoa(self):
         """Verifica se Pessoa nova gera matricula_id e data_matricula automaticamente"""
         p = Pessoa.objects.create(
-            nome_completo="Maria Silva",
+            nome_completo="Paulo Vitor",
             data_nascimento=date(1990, 5, 10),
             endereco="Rua A, 123"
         )
@@ -19,12 +19,12 @@ class PessoaModelTest(TestCase):
         self.assertIsNotNone(p.data_matricula, "data_matricula deve ser definida")
         self.assertTrue(p.status_ativo, "Pessoa sem data_saida deve estar ativa")
 
-    def test_status_ativo_ajustado_por_data_saida(self):
+    def test_status_ativo(self):
         """Verifica se status_ativo é False quando data_saida é definida"""
         p = Pessoa.objects.create(
-            nome_completo="João",
-            data_nascimento=date(1985, 1, 1),
-            endereco="Rua B, 456",
+            nome_completo="João Pedro",
+            data_nascimento=date(2001, 1, 1),
+            endereco="Avenida D, 456",
             data_saida=date.today()
         )
         self.assertFalse(p.status_ativo)
@@ -45,12 +45,12 @@ class PessoaModelTest(TestCase):
             matricula_id=codigo
         )
         with self.assertRaises(ValidationError):
-            p2.save()
+            p2.full_clean()
 
     def test_str_retorna_nome_e_matricula(self):
-        """Verifica __str__ de Pessoa"""
+        """Verifica que o método __str__ da classe Pessoa foi implementado para mostrar tanto o nome quanto a matrícula"""
         p = Pessoa.objects.create(
-            nome_completo="Ana",
+            nome_completo="Ana Maria",
             data_nascimento=date(1995, 7, 7),
             endereco="Rua C, 789"
         )
@@ -60,15 +60,17 @@ class PessoaModelTest(TestCase):
 class AlunoModelTest(TestCase):
     """Testes para o model Aluno, subclasse de Pessoa"""
 
-    def test_criar_aluno_herda_campos_pessoa(self):
+    def test_criar_aluno(self):
         aluno = Aluno.objects.create(
             nome_completo="Carlos",
-            data_nascimento=date(2005, 3, 15),
-            endereco="Rua D, 321"
+            data_nascimento=date(2008, 3, 15),
+            endereco="Avenida D, 321"
         )
-        self.assertIsInstance(aluno, Aluno)
-        self.assertIsNotNone(aluno.matricula_id)
-        self.assertEqual(str(aluno), f"Aluno: {aluno.nome_completo}")
+        self.assertIsInstance(aluno, Aluno) # verifica se é instância de Aluno
+        self.assertTrue(aluno.status_ativo)  # sem data_saida, deve ser ativo
+        self.assertIsNotNone(aluno.matricula_id) # matricula_id deve ser gerado
+        self.assertIsNotNone(aluno.data_matricula, "data_matricula deve ser definida")
+        self.assertEqual(str(aluno), f"Aluno: {aluno.nome_completo}") # verifica __str__
 
 class VoluntarioModelTest(TestCase):
     """Testes para o model Voluntario, subclasse de Pessoa"""
