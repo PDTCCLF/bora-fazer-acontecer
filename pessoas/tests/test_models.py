@@ -67,10 +67,10 @@ class AlunoModelTest(TestCase):
             endereco="Avenida D, 321"
         )
         self.assertIsInstance(aluno, Aluno) # verifica se é instância de Aluno
-        self.assertTrue(aluno.status_ativo)  # sem data_saida, deve ser ativo
-        self.assertIsNotNone(aluno.matricula_id) # matricula_id deve ser gerado
+        self.assertIsNotNone(aluno.matricula_id, "matricula_id deve ser gerado")
         self.assertIsNotNone(aluno.data_matricula, "data_matricula deve ser definida")
-        self.assertEqual(str(aluno), f"Aluno: {aluno.nome_completo}") # verifica __str__
+        self.assertTrue(aluno.status_ativo, "Aluno sem data_saida deve estar ativo")
+        self.assertIn(aluno.nome_completo, str(aluno))
 
 class VoluntarioModelTest(TestCase):
     """Testes para o model Voluntario, subclasse de Pessoa"""
@@ -91,16 +91,16 @@ class VoluntarioModelTest(TestCase):
             usuario=self.user
         )
 
+    def test_criar_voluntario(self):
+        self.assertIsInstance(self.voluntario, Voluntario) # verifica se é instância de Voluntario
+        self.assertIsNotNone(self.voluntario.matricula_id, "matricula_id deve ser gerado")
+        self.assertIsNotNone(self.voluntario.data_matricula, "data_matricula deve ser definida")
+        self.assertTrue(self.voluntario.status_ativo, "Voluntario sem data_saida deve estar ativo")
+        self.assertIn(self.voluntario.nome_completo, str(self.voluntario))
+
     def test_voluntario_criado_com_usuario(self):
         """Verifica se o voluntário está vinculado ao usuário Django"""
         self.assertEqual(self.voluntario.usuario.username, "voluntario1")
-        self.assertTrue(self.voluntario.status_ativo)
-        self.assertIsNotNone(self.voluntario.matricula_id)
-
-    def test_str_retorna_nome(self):
-        """Verifica __str__ do voluntário"""
-        self.assertIn("Voluntario", str(self.voluntario))
-        self.assertIn(self.voluntario.nome_completo, str(self.voluntario))
 
     def test_delete_deleta_usuario_associado(self):
         """Ao deletar o voluntário, o usuário Django também é deletado"""

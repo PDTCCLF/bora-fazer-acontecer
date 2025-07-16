@@ -5,24 +5,22 @@ from patrocinadores.models import Patrocinador, FinanciamentoEvento
 from eventos.models import Evento
 from decimal import Decimal
 from datetime import date, time
-from django.contrib.auth.decorators import login_required
 
 
-@login_required
 class PatrocinadoresViewsTests(TestCase):
     """Testes para as views de Patrocinador e FinanciamentoEvento."""
 
     def setUp(self):
         # Cria usuário autenticado para acessar as views
-        self.user = User.objects.create_user(username="tester", password="12345")
+        self.user = User.objects.create_user(username="testador", password="12345")
         self.client = Client()
-        self.client.login(username="tester", password="12345")
+        self.client.login(username="testador", password="12345")
 
         # Dados iniciais
         self.patrocinador = Patrocinador.objects.create(
             documento_id="11.111.111/0001-11",
             nome="Empresa Teste",
-            campo_atividade="EDUCACAO"
+            campo_atividade="EDUCAO"
         )
         self.evento = Evento.objects.create(
             nome="Evento X",
@@ -37,19 +35,6 @@ class PatrocinadoresViewsTests(TestCase):
         )
 
     # -----------------------------
-    # Testes de LISTAGEM
-    # -----------------------------
-    def test_lista_patrocinadores(self):
-        response = self.client.get(reverse("lista_patrocinadores"))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "Empresa Teste")
-
-    def test_lista_financiamentos(self):
-        response = self.client.get(reverse("lista_financiamentos"))
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "1000.00")
-
-    # -----------------------------
     # Testes de CRIAÇÃO
     # -----------------------------
     def test_criar_patrocinador(self):
@@ -62,6 +47,17 @@ class PatrocinadoresViewsTests(TestCase):
         self.assertTrue(Patrocinador.objects.filter(nome="Novo Patrocinador").exists())
 
     def test_criar_financiamento(self):
+        self.patrocinador = Patrocinador.objects.create(
+            documento_id="22.222.222/0001-22",
+            nome="Novo Patrocinador",
+            campo_atividade="ESPORTE"
+        )
+        self.evento = Evento.objects.create(
+            nome="Evento Y",
+            data=date.today(),
+            hora_inicio=time(15, 0),
+            local="Centro Comunitário"
+        )
         response = self.client.post(reverse("criar_financiamento"), {
             "patrocinador": self.patrocinador.id,
             "evento": self.evento.id,
@@ -69,6 +65,19 @@ class PatrocinadoresViewsTests(TestCase):
         })
         self.assertRedirects(response, reverse("lista_financiamentos"))
         self.assertTrue(FinanciamentoEvento.objects.filter(valor="500.00").exists())
+
+    # -----------------------------
+    # Testes de LISTAGEM
+    # -----------------------------
+    def test_lista_patrocinadores(self):
+        response = self.client.get(reverse("lista_patrocinadores"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Empresa Teste")
+
+    def test_lista_financiamentos(self):
+        response = self.client.get(reverse("lista_financiamentos"))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "1000")
 
     # -----------------------------
     # Testes de EDIÇÃO

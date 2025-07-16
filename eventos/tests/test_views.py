@@ -1,72 +1,120 @@
-from django.shortcuts import render, get_object_or_404, redirect
+# eventos/tests/test_views.py
+from django.test import TestCase, Client
+from django.urls import reverse
+from django.contrib.auth.models import User
 from eventos.models import Evento, Participacao
-from eventos.forms import EventoForm, ParticipacaoForm
-from django.contrib.auth.decorators import login_required
+from pessoas.models import Aluno
+from datetime import date, time
 
-@login_required
-# View para listar todos os eventos
-def lista_eventos(request):
-    eventos = Evento.objects.all()
-    return render(request, 'eventos/lista.html', {'eventos': eventos})
 
-@login_required
-# View para listar todas as participações
-def lista_participacoes(request):
-    participacoes = Participacao.objects.all()
-    return render(request, 'eventos/participacoes.html', {'participacoes': participacoes})
+class EventoViewTests(TestCase):
+    """Testes para as views relacionadas a Evento e a Participacao."""
 
-@login_required
-# Criar evento
-def criar_evento(request):
-    form = EventoForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('lista_eventos')
-    return render(request, 'eventos/formulario.html', {'form': form, 'titulo': 'Criar Evento'})
+    def setUp(self):
+        super().setUp()
+        # Cliente de teste
+        self.client = Client()
 
-@login_required
-# Criar participação
-def criar_participacao(request):
-    form = ParticipacaoForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        return redirect('lista_participacoes')
-    return render(request, 'eventos/formulario_participacao.html', {'form': form, 'titulo': 'Criar Participação'})
+        # Usuário para autenticação
+        self.user = User.objects.create_user(username='admin', password='123456')
+        self.user.is_staff = True
+        self.user.save()
 
-@login_required
-# Editar evento
-def editar_evento(request, pk):
-    evento = get_object_or_404(Evento, pk=pk)
-    form = EventoForm(request.POST or None, instance=evento)
-    if form.is_valid():
-        form.save()
-        return redirect('lista_eventos')
-    return render(request, 'eventos/formulario.html', {'form': form, 'titulo': 'Editar Evento'})
+        # Login do cliente
+        self.client.login(username='admin', password='123456')
 
-@login_required
-# Editar participação
-def editar_participacao(request, pk):
-    participacao = get_object_or_404(Participacao, pk=pk)
-    form = ParticipacaoForm(request.POST or None, instance=participacao)
-    if form.is_valid():
-        form.save()
-        return redirect('lista_participacoes')
-    return render(request, 'eventos/formulario_participacao.html', {'form': form, 'titulo': 'Editar Participação'})
+        self.aluno = Aluno.objects.create(
+            nome_completo="Ana Paula",
+            data_nascimento=date(2001, 1, 1),
+            endereco="Rua A, 123"
+        )
+        self.evento = Evento.objects.create(
+            nome="Festival de Dança",
+            data=date.today(),
+            hora_inicio=time(19, 0),
+            local="Ginásio"
+        )
+        self.participacao = Participacao.objects.create(
+            aluno=self.aluno, evento=self.evento
+        )
 
-@login_required
-# Deletar evento
-def deletar_evento(request, pk):
-    evento = get_object_or_404(Evento, pk=pk)
-    if request.method == 'POST':
-        evento.delete()
-        return redirect('lista_eventos')
-    return render(request, 'eventos/confirma_deletar.html', {'evento': evento})
+    def test_lista_eventos(self):
+        url = reverse("lista_eventos")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Festival de Dança")
 
-@login_required
-# Deletar participação
-def deletar_participacao(request, pk):
-    participacao = get_object_or_404(Participacao, pk=pk)
-    if request.method == 'POST':
-        participacao.delete()
-        return redirect('lista_participacoes')
-    return render(request, 'eventos/confirma_deletar_participacao.html', {'participacao': participacao})
+    def test_criar_evento(self):
+        url = reverse("criar_evento")
+        data = {
+            "nome": "Campeonato de Xadrez",
+            "data": "2025-09-03",
+            "hora_inicio": "10:00",
+            "duracao": "3 horas",
+            "descricao": "Competição regional",
+            "local": "Biblioteca"
+        }
+        response = self.client.post(url, data)
+        self.assertRedirects(response, reverse("lista_eventos"))
+        self.assertTrue(Evento.objects.filter(nome="Campeonato de Xadrez").exists())
+
+    def test_editar_evento(self):
+        url = reverse("editar_evento", args=[self.evento.pk])
+        response = self.client.post(url, {
+            "nome": "Festival de Dança Atualizado",
+            "data": "2025-09-04",
+            "hora_inicio": "20:00",
+            "local": "Arena"
+        })
+        self.assertRedirects(response, reverse("lista_eventos"))
+        self.evento.refresh_from_db()
+        self.assertEqual(self.evento.nome, "Festival de Dança Atualizado")
+
+    def test_deletar_evento(self):
+        url = reverse("deletar_evento", args=[self.evento.pk])
+        response = self.client.post(url)
+        self.assertRedirects(response, reverse("lista_eventos"))
+        self.assertFalse(Evento.objects.filter(pk=self.evento.pk).exists())
+
+    def test_lista_participacoes(self):
+        url = reverse("lista_participacoes")
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Ana Paula")
+
+    def test_criar_participacao(self):
+        novo_evento = Evento.objects.create(
+            nome="Oficina de Teatro",
+            data=date.today(),
+            hora_inicio=time(16, 0),
+            local="Auditório"
+        )
+        url = reverse("criar_participacao")
+        response = self.client.post(url, {
+            "aluno": self.aluno.pk,
+            "evento": novo_evento.pk
+        })
+        self.assertRedirects(response, reverse("lista_participacoes"))
+        self.assertTrue(Participacao.objects.filter(aluno=self.aluno, evento=novo_evento).exists())
+
+    def test_editar_participacao(self):
+        novo_evento = Evento.objects.create(
+            nome="Feira de Ciências",
+            data=date.today(),
+            hora_inicio=time(9, 0),
+            local="Escola"
+        )
+        url = reverse("editar_participacao", args=[self.participacao.pk])
+        response = self.client.post(url, {
+            "aluno": self.aluno.pk,
+            "evento": novo_evento.pk
+        })
+        self.assertRedirects(response, reverse("lista_participacoes"))
+        self.participacao.refresh_from_db()
+        self.assertEqual(self.participacao.evento, novo_evento)
+
+    def test_deletar_participacao(self):
+        url = reverse("deletar_participacao", args=[self.participacao.pk])
+        response = self.client.post(url)
+        self.assertRedirects(response, reverse("lista_participacoes"))
+        self.assertFalse(Participacao.objects.filter(pk=self.participacao.pk).exists())
