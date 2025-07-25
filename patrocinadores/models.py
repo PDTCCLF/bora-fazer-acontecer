@@ -17,7 +17,7 @@ class Patrocinador(Base):
         ('OUTRO', 'Outro'),
     ]
 
-    documento_id = models.CharField(max_length=50, unique=True)  # CNPJ, registro etc.
+    documento_id = models.CharField(max_length=50, unique=True)  # CNPJ ou algum outro tipo de registro.
     nome = models.CharField(max_length=150)
     telefone_contato = models.CharField(max_length=20, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)

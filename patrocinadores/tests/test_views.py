@@ -20,7 +20,7 @@ class PatrocinadoresViewsTests(TestCase):
         self.patrocinador = Patrocinador.objects.create(
             documento_id="11.111.111/0001-11",
             nome="Empresa Teste",
-            campo_atividade="EDUCAO"
+            campo_atividade="EDUCACAO"
         )
         self.evento = Evento.objects.create(
             nome="Evento X",

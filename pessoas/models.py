@@ -11,16 +11,16 @@ class Pessoa(Base):
     Representa uma pessoa no sistema.
     Pode ser especializada como Aluno ou Voluntario.
     """
-    matricula_id = models.CharField(max_length=100, unique=True, editable=False) # matricula na ong
+    matricula_id = models.CharField(max_length=100, unique=True, editable=False) # matricula na organizacao
     nome_completo = models.CharField(max_length=100)
-    id_nacional = models.CharField(max_length=20, blank=True, null=True) # opcional
+    id_nacional = models.CharField(max_length=20, blank=True, null=True) # opcional, cpf ou rg
     telefone = models.CharField(max_length=20, blank=True, null=True) # opcional
     email = models.EmailField(blank=True, null=True) # opcional
     endereco = models.TextField()
-    data_matricula = models.DateField(editable=False) # data de entrada na ong
+    data_matricula = models.DateField(editable=False) # data de entrada na organizacao
     data_nascimento = models.DateField()
-    data_saida = models.DateField(blank=True, null=True) # data de saída da ong, opcional
-    status_ativo = models.BooleanField(default=True, editable=False) # se a pessoa está ativa na ong
+    data_saida = models.DateField(blank=True, null=True) # data de saída da organizacao, opcional
+    status_ativo = models.BooleanField(default=True, editable=False) # se a pessoa está ativa significa que mantem algum vinculo com a organizacao
 
     def save(self, *args, **kwargs):
         # Se for novo registro, define data_matricula

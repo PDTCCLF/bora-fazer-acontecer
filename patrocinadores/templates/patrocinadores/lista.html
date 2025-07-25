@@ -13,7 +13,7 @@
     <ul class="lista-patrocinadores">
         {% for patrocinador in patrocinadores %}
             <li>
-                {{ patrocinador.nome }} - {{ patrocinador.campo_atividade }}
+                {{ patrocinador.nome }} - {{ patrocinador.get_campo_atividade_display }}
                 <a class="btn" href="{% url 'editar_patrocinador' patrocinador.id %}">Editar</a>
                 <a class="btn btn-danger" href="{% url 'deletar_patrocinador' patrocinador.id %}">Deletar</a>
             </li>

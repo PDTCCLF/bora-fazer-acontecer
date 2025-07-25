@@ -1,0 +1,507 @@
+[
+  {
+    "model": "pessoas.pessoa",
+    "pk": 10000,
+    "fields": {
+      "matricula_id": "A001",
+      "nome_completo": "Alice Souza",
+      "endereco": "Rua das Flores, 123, São Paulo, SP",
+      "data_nascimento": "1998-05-15",
+      "data_matricula": "2025-01-10",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "pessoas.pessoa",
+    "pk": 11000,
+    "fields": {
+      "matricula_id": "A002",
+      "nome_completo": "Bruno Lima",
+      "endereco": "Avenida Principal, 456, Rio de Janeiro, RJ",
+      "data_nascimento": "1999-02-20",
+      "data_matricula": "2025-01-11",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "pessoas.pessoa",
+    "pk": 12000,
+    "fields": {
+      "matricula_id": "A003",
+      "nome_completo": "Carla Ferreira",
+      "endereco": "Praça da Sé, 789, Salvador, BA",
+      "data_nascimento": "1998-11-30",
+      "data_matricula": "2025-01-12",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "pessoas.pessoa",
+    "pk": 13000,
+    "fields": {
+      "matricula_id": "A004",
+      "nome_completo": "Daniel Costa",
+      "endereco": "Rua dos Andradas, 101, Porto Alegre, RS",
+      "data_nascimento": "2000-07-25",
+      "data_matricula": "2025-01-13",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "pessoas.pessoa",
+    "pk": 14000,
+    "fields": {
+      "matricula_id": "A005",
+      "nome_completo": "Eva Martins",
+      "endereco": "Avenida Afonso Pena, 212, Belo Horizonte, MG",
+      "data_nascimento": "1999-09-05",
+      "data_matricula": "2025-01-14",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "pessoas.pessoa",
+    "pk": 15000,
+    "fields": {
+      "matricula_id": "V001",
+      "nome_completo": "Otavio Ribeiro",
+      "endereco": "Rua da Consolação, 343, São Paulo, SP",
+      "data_nascimento": "1995-01-10",
+      "data_matricula": "2025-02-01",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "pessoas.pessoa",
+    "pk": 16000,
+    "fields": {
+      "matricula_id": "V002",
+      "nome_completo": "Mariana Alves",
+      "endereco": "Avenida Copacabana, 565, Rio de Janeiro, RJ",
+      "data_nascimento": "1992-03-12",
+      "data_matricula": "2025-02-02",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "pessoas.pessoa",
+    "pk": 17000,
+    "fields": {
+      "matricula_id": "V003",
+      "nome_completo": "Pedro Santos",
+      "endereco": "Rua XV de Novembro, 898, Curitiba, PR",
+      "data_nascimento": "1996-08-22",
+      "data_matricula": "2025-02-03",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "pessoas.pessoa",
+    "pk": 18000,
+    "fields": {
+      "matricula_id": "V004",
+      "nome_completo": "Fernanda Rocha",
+      "endereco": "Avenida Boa Viagem, 121, Recife, PE",
+      "data_nascimento": "1997-12-01",
+      "data_matricula": "2025-02-04",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "pessoas.pessoa",
+    "pk": 19000,
+    "fields": {
+      "matricula_id": "V005",
+      "nome_completo": "Thiago Oliveira",
+      "endereco": "Setor Hoteleiro Sul, 343, Brasília, DF",
+      "data_nascimento": "1994-06-18",
+      "data_matricula": "2025-02-05",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "pessoas.aluno",
+    "pk": 10000,
+    "fields": {
+      "pessoa_ptr": 10000,
+      "data_matricula": "2025-01-10"
+    }
+  },
+  {
+    "model": "pessoas.aluno",
+    "pk": 11000,
+    "fields": {
+      "pessoa_ptr": 11000,
+      "data_matricula": "2025-01-11"
+    }
+  },
+  {
+    "model": "pessoas.aluno",
+    "pk": 12000,
+    "fields": {
+      "pessoa_ptr": 12000,
+      "data_matricula": "2025-01-12"
+    }
+  },
+  {
+    "model": "pessoas.aluno",
+    "pk": 13000,
+    "fields": {
+      "pessoa_ptr": 13000,
+      "data_matricula": "2025-01-13"
+    }
+  },
+  {
+    "model": "pessoas.aluno",
+    "pk": 14000,
+    "fields": {
+      "pessoa_ptr": 14000,
+      "data_matricula": "2025-01-14"
+    }
+  },
+    {
+    "model": "pessoas.voluntario",
+    "pk": 15000,
+    "fields": {
+        "pessoa_ptr": 15000,
+        "usuario": 600,
+        "data_matricula": "2025-02-01"
+    }
+    },
+    {
+    "model": "pessoas.voluntario",
+    "pk": 16000,
+    "fields": {
+        "pessoa_ptr": 16000,
+        "usuario": 700,
+        "data_matricula": "2025-02-02"
+    }
+    },
+    {
+    "model": "pessoas.voluntario",
+    "pk": 17000,
+    "fields": {
+        "pessoa_ptr": 17000,
+        "usuario": 800,
+        "data_matricula": "2025-02-03"
+    }
+    },
+    {
+    "model": "pessoas.voluntario",
+    "pk": 18000,
+    "fields": {
+        "pessoa_ptr": 18000,
+        "usuario": 900,
+        "data_matricula": "2025-02-04"
+    }
+    },
+    {
+    "model": "pessoas.voluntario",
+    "pk": 19000,
+    "fields": {
+        "pessoa_ptr": 19000,
+        "usuario": 1000,
+        "data_matricula": "2025-02-05"
+    }
+    },
+  {
+    "model": "auth.user",
+    "pk": 600,
+    "fields": {
+      "username": "vol1",
+      "password": "pbkdf2_sha256$...",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 700,
+    "fields": {
+      "username": "vol2",
+      "password": "pbkdf2_sha256$...",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 800,
+    "fields": {
+      "username": "vol3",
+      "password": "pbkdf2_sha256$...",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 900,
+    "fields": {
+      "username": "vol4",
+      "password": "pbkdf2_sha256$...",
+      "is_active": true
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 1000,
+    "fields": {
+      "username": "vol5",
+      "password": "pbkdf2_sha256$...",
+      "is_active": true
+    }
+  },
+  {
+    "model": "eventos.evento",
+    "pk": 1000,
+    "fields": {
+      "codigo_evento": "EVT001",
+      "nome": "Festival Cultural",
+      "data": "2025-09-10",
+      "hora_inicio": "18:00:00",
+      "duracao": "3 horas",
+      "descricao": "Apresentações culturais da comunidade",
+      "local": "Centro Comunitário",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "eventos.evento",
+    "pk": 2000,
+    "fields": {
+      "codigo_evento": "EVT002",
+      "nome": "Torneio de Futebol",
+      "data": "2025-09-15",
+      "hora_inicio": "14:00:00",
+      "duracao": "2 horas",
+      "descricao": "Campeonato de futebol infantil",
+      "local": "Campo Municipal",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "eventos.evento",
+    "pk": 3000,
+    "fields": {
+      "codigo_evento": "EVT003",
+      "nome": "Oficina de Teatro",
+      "data": "2025-09-20",
+      "hora_inicio": "10:00:00",
+      "duracao": "4 horas",
+      "descricao": "Introdução ao teatro para jovens",
+      "local": "Auditório da ONG",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "eventos.evento",
+    "pk": 4000,
+    "fields": {
+      "codigo_evento": "EVT004",
+      "nome": "Caminhada Ecológica",
+      "data": "2025-09-25",
+      "hora_inicio": "08:00:00",
+      "duracao": "5 horas",
+      "descricao": "Atividade ao ar livre de conscientização ambiental",
+      "local": "Trilha da Serra",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "eventos.evento",
+    "pk": 5000,
+    "fields": {
+      "codigo_evento": "EVT005",
+      "nome": "Feira de Ciências",
+      "data": "2025-09-30",
+      "hora_inicio": "09:00:00",
+      "duracao": "6 horas",
+      "descricao": "Exposição de projetos de alunos",
+      "local": "Escola Comunitária",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "patrocinadores.patrocinador",
+    "pk": 1000,
+    "fields": {
+      "documento_id": "11111111000101",
+      "nome": "Editora Educação",
+      "telefone_contato": "11999990001",
+      "email": "contato@editora.com",
+      "campo_atividade": "EDUCAO",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "patrocinadores.patrocinador",
+    "pk": 2000,
+    "fields": {
+      "documento_id": "22222222000102",
+      "nome": "Academia Esporte",
+      "telefone_contato": "11999990002",
+      "email": "contato@esporte.com",
+      "campo_atividade": "ESPORTE",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "patrocinadores.patrocinador",
+    "pk": 3000,
+    "fields": {
+      "documento_id": "33333333000103",
+      "nome": "Instituto Artes",
+      "telefone_contato": "11999990003",
+      "email": "contato@artes.com",
+      "campo_atividade": "ARTES",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "patrocinadores.patrocinador",
+    "pk": 4000,
+    "fields": {
+      "documento_id": "44444444000104",
+      "nome": "Clínica Saúde",
+      "telefone_contato": "11999990004",
+      "email": "contato@saude.com",
+      "campo_atividade": "SAUDE",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "patrocinadores.patrocinador",
+    "pk": 5000,
+    "fields": {
+      "documento_id": "55555555000105",
+      "nome": "Associação Comunidade",
+      "telefone_contato": "11999990005",
+      "email": "contato@comunidade.com",
+      "campo_atividade": "COMUNIDADE",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "eventos.participacao",
+    "pk": 1000,
+    "fields": {
+      "aluno": 10000,
+      "evento": 1000,
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "eventos.participacao",
+    "pk": 2000,
+    "fields": {
+      "aluno": 11000,
+      "evento": 2000,
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "eventos.participacao",
+    "pk": 3000,
+    "fields": {
+      "aluno": 12000,
+      "evento": 3000,
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "eventos.participacao",
+    "pk": 4000,
+    "fields": {
+      "aluno": 13000,
+      "evento": 4000,
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "eventos.participacao",
+    "pk": 5000,
+    "fields": {
+      "aluno": 14000,
+      "evento": 5000,
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "patrocinadores.financiamentoevento",
+    "pk": 1000,
+    "fields": {
+      "patrocinador": 1000,
+      "evento": 1000,
+      "valor": "1000.00",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "patrocinadores.financiamentoevento",
+    "pk": 2000,
+    "fields": {
+      "patrocinador": 2000,
+      "evento": 2000,
+      "valor": "2000.00",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "patrocinadores.financiamentoevento",
+    "pk": 3000,
+    "fields": {
+      "patrocinador": 3000,
+      "evento": 3000,
+      "valor": "1500.00",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "patrocinadores.financiamentoevento",
+    "pk": 4000,
+    "fields": {
+      "patrocinador": 4000,
+      "evento": 4000,
+      "valor": "2500.00",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  },
+  {
+    "model": "patrocinadores.financiamentoevento",
+    "pk": 5000,
+    "fields": {
+      "patrocinador": 5000,
+      "evento": 5000,
+      "valor": "3000.00",
+      "criado_em": "2025-09-01T10:00:00Z",
+      "atualizado_em": "2025-09-01T10:00:00Z"
+    }
+  }
+]
