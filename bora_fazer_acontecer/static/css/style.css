@@ -1,42 +1,71 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9fafb;
-    margin: 40px;
-    color: #2c3e50;
+    margin: 0;
+    padding: 0;
+    background: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-.container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
+.login-container {
     background: #ffffff;
+    padding: 30px 40px;
     border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 320px;
+    text-align: left; /* alinhamento para a esquerda */
 }
 
 h1 {
-    color: #3498db;
-    text-align: center;
+    color: #07578c;
     margin-bottom: 20px;
+    text-align: center; /* centraliza apenas o título */
 }
 
-.lista-pessoas {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.form-group {
+    margin-bottom: 15px;
 }
 
-.lista-pessoas li {
-    background: #eaf2f8;
-    color: #2c3e50;
-    font-size: 18px;
-    padding: 12px 16px;
-    margin-bottom: 8px;
-    border-radius: 6px;
-    border: 1px solid #d6eaf8;
-    transition: background 0.2s ease;
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #07578c;
 }
 
-.lista-pessoas li:hover {
-    background: #d6eaf8;
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: #07578c;
+    outline: none;
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background: #07578c;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background: #07476e; /* escurecido */
+}
+
+.error {
+    color: #8c0000;
+    margin-bottom: 15px;
+    text-align: center; /* centraliza a mensagem de erro */
 }
