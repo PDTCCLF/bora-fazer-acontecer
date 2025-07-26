@@ -13,7 +13,7 @@
         <p>Bem-vindo, <strong>{{ user.username }}</strong>!</p>
         <form action="{% url 'logout' %}" method="post" style="display:inline;">
             {% csrf_token %}
-            <button type="submit" class="btn-logout">Logout</button>
+            <button type="submit" class="btn">Logout</button>
         </form>
     {% else %}
         <p><a href="{% url 'login' %}">Login</a></p>

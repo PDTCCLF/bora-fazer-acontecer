@@ -2,10 +2,25 @@ body {
     font-family: Arial, sans-serif;
     margin: 40px;
     background: #f9fafb;
+    color: #07578c;
 }
 
+.btn {
+    background: #07578c;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #07476e;
+}
+
+
 h1 {
-    color: #3498db;
+    color: #07578c;
 }
 
 h1 a {
@@ -24,10 +39,10 @@ li {
 
 a {
     text-decoration: none;
-    color: #2c3e50;
+    color: #07578c;
     font-weight: bold;
 }
 
 a:hover {
-    color: #3498db;
+    color: #07476e;
 }
