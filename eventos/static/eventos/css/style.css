@@ -2,12 +2,17 @@ body {
     font-family: Arial, sans-serif;
     margin: 40px;
     background: #f9fafb;
-    color: #2c3e50;
+    color: #1d1aba;
 }
 
 /* -------- TÍTULOS -------- */
-h1 {
-    color: #e67e22; /* laranja para eventos */
+.lista-eventos h1 {
+    color: #07578c;
+    margin-bottom: 20px;
+}
+
+.lista-participacoes h1 {
+    color: #07578c;
     margin-bottom: 20px;
 }
 
@@ -18,11 +23,11 @@ h1 {
 }
 
 .lista-eventos li {
-    background: #fbeee6; /* laranja bem claro */
+    background: #00eeff;
     margin-bottom: 8px;
     padding: 10px;
     border-radius: 6px;
-    border-left: 5px solid #e67e22;
+    border-left: 5px solid #1d1aba;
 }
 
 /* -------- LISTA DE PARTICIPAÇÕES -------- */
@@ -32,11 +37,11 @@ h1 {
 }
 
 .lista-participacoes li {
-    background: #f3e6ff; /* roxo claro */
+    background: #00eeff;
     margin-bottom: 8px;
     padding: 10px;
     border-radius: 6px;
-    border-left: 5px solid #8e44ad; /* roxo mais forte */
+    border-left: 5px solid #1d1aba;
 }
 
 /* -------- BOTÕES -------- */
@@ -45,19 +50,19 @@ a.btn {
     padding: 4px 8px;
     text-decoration: none;
     color: white;
-    background: #e67e22; /* padrão eventos */
+    background: #1d1aba;
     border-radius: 4px;
     font-size: 14px;
 }
 
 a.btn:hover {
-    background: #ca6f1e;
+    background: #1d1aba;
 }
 
 a.btn-danger {
-    background: #e74c3c;
+    background: #820000;
 }
 
 a.btn-danger:hover {
-    background: #c0392b;
+    background: #820000;
 }

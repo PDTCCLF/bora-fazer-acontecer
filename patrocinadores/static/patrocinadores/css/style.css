@@ -2,11 +2,17 @@ body {
     font-family: Arial, sans-serif;
     margin: 40px;
     background: #f9fafb;
-    color: #2c3e50;
+    color: #1d1aba;
 }
 
-h1 {
-    color: #27ae60; /* verde */
+/* -------- TÍTULOS -------- */
+.lista-patrocinadores h1 {
+    color: #07578c;
+    margin-bottom: 20px;
+}
+
+.lista-financiamentos h1 {
+    color: #07578c;
     margin-bottom: 20px;
 }
 
@@ -17,10 +23,11 @@ h1 {
 }
 
 .lista-patrocinadores li {
-    background: #ecf0f1;
+    background: #00eeff;
     margin-bottom: 8px;
     padding: 10px;
     border-radius: 6px;
+    border-left: 5px solid #1d1aba;
 }
 
 /* -------- LISTA DE FINANCIAMENTOS -------- */
@@ -30,11 +37,11 @@ h1 {
 }
 
 .lista-financiamentos li {
-    background: #d5f5e3; /* um verde claro para diferenciar */
+    background: #00eeff;
     margin-bottom: 8px;
     padding: 10px;
     border-radius: 6px;
-    border-left: 5px solid #27ae60; /* destaque visual */
+    border-left: 5px solid #1d1aba;
 }
 
 /* -------- BOTÕES -------- */
@@ -43,19 +50,19 @@ a.btn {
     padding: 4px 8px;
     text-decoration: none;
     color: white;
-    background: #27ae60; /* verde */
+    background: #1d1aba;
     border-radius: 4px;
     font-size: 14px;
 }
 
 a.btn:hover {
-    background: #1e8449;
+    background: #1d1aba;
 }
 
 a.btn-danger {
-    background: #e74c3c;
+    background: #820000;
 }
 
 a.btn-danger:hover {
-    background: #c0392b;
+    background: #820000;
 }

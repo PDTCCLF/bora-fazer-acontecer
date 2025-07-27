@@ -2,44 +2,67 @@ body {
     font-family: Arial, sans-serif;
     margin: 40px;
     background: #f9fafb;
-    color: #2c3e50;
+    color: #1d1aba;
 }
 
-h1 {
-    color: #3498db;
+/* -------- TÍTULOS -------- */
+.lista-alunos h1 {
+    color: #07578c;
     margin-bottom: 20px;
 }
 
-.lista-pessoas {
+.lista-voluntarios h1 {
+    color: #07578c;
+    margin-bottom: 20px;
+}
+
+/* -------- LISTA DE ALUNOS -------- */
+.lista-alunos {
     list-style: none;
     padding: 0;
 }
 
-.lista-pessoas li {
-    background: #ecf0f1;
+.lista-alunos li {
+    background: #00eeff;
     margin-bottom: 8px;
     padding: 10px;
     border-radius: 6px;
+    border-left: 5px solid #1d1aba;
 }
 
+/* -------- LISTA DE VOLUNTÁRIOS -------- */
+.lista-voluntarios {
+    list-style: none;
+    padding: 0;
+}
+
+.lista-voluntarios li {
+    background: #00eeff;
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 6px;
+    border-left: 5px solid #1d1aba;
+}
+
+/* -------- BOTÕES -------- */
 a.btn {
     margin-left: 10px;
     padding: 4px 8px;
     text-decoration: none;
     color: white;
-    background: #3498db;
+    background: #1d1aba;
     border-radius: 4px;
     font-size: 14px;
 }
 
 a.btn:hover {
-    background: #2980b9;
+    background: #1d1aba;
 }
 
 a.btn-danger {
-    background: #e74c3c;
+    background: #820000;
 }
 
 a.btn-danger:hover {
-    background: #c0392b;
+    background: #820000;
 }
